@@ -12,7 +12,7 @@
 			{{ memoire.description }}
 		</p>
 
-		<a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a>
+		<a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a> |
 
 		<form action="{{ path('memoire_delete', {id: memoire.id}) }}"
 			method="POST" style="display: inline-block;">

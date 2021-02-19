@@ -6,6 +6,8 @@ use App\Entity\Memoire;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+
 
 class MemoireFormType extends AbstractType
 {
@@ -14,6 +16,7 @@ class MemoireFormType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
+            ->add('attachment', VichFileType::class)
         ;
     }
 
