@@ -6,7 +6,10 @@
 	<h1>Liste des mémoires</h1>
 
 	{% for memoire in memoires %}
-		<h2>{{ memoire.title }}</h2>
+
+		<h2>
+			<a href="{{path('memoire_show', {id: memoire.id})}}">{{ memoire.title }}</a>
+		</h2>
 
 		<p>
 			{{ memoire.description }}

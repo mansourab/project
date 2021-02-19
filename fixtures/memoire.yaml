@@ -1,0 +1,6 @@
+App\Entity\Memoire:
+    item_{1..50}:
+        title: <name()>
+        description: <text(100)>
+        filename: http://picsum.photos/id/<numberBetween(400,800)>/200/180
+        categories: '<numberBetween(1,5)>x @category*'

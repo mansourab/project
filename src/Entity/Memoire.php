@@ -4,10 +4,15 @@ namespace App\Entity;
 
 use App\Repository\MemoireRepository;
 use App\Traits\Timestampable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Gedmo\Mapping\Annotation as Gedmo;
+
+
 
 /**
  * @ORM\Entity(repositoryClass=MemoireRepository::class)
@@ -46,6 +51,22 @@ class Memoire
      * @var File
      */
     private $attachment;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="memoires")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
 
 
@@ -108,6 +129,45 @@ class Memoire
         return $this;
     }
 
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
+    public function setSlug(string $slug)
+    {
+        $this->slug = $slug;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        $this->categories->removeElement($category);
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->title;
+    }
+    
 }

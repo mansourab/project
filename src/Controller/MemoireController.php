@@ -73,6 +73,20 @@ class MemoireController extends AbstractController
     }
 
     /**
+     * @Route("/memoire/show/{id}", name="memoire_show")
+     */
+    public function show(Memoire $memoire)
+    {
+        if (!$memoire) {
+            throw $this->createNotFoundException('Memoire not found'); 
+        }
+
+        return $this->render('memoire/show.html.twig', [
+            'memoire' => $memoire
+        ]);
+    }
+
+    /**
      * @Route("/memoire/delete{id}", name="memoire_delete", methods="DELETE")
      * @param Memoire $memoire
      * @param EntityManagerInterface $em

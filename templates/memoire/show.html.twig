@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+
+{% block title 'Voir le mémoire' %}
+
+{% block body %}
+    <h2>
+        {{ memoire.title }}
+    </h2>
+    <h4>Categories:</h4>
+    {% for category in memoire.categories %}
+        <em>{{ category.name }}</em> |
+    {% endfor %}
+
+    <p>
+        {{ memoire.description }}
+    </p>
+{% endblock %}
