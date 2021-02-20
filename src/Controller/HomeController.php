@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\MemoireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -11,8 +12,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home_home")
      */
-    public function index(): Response
+    public function index(MemoireRepository $repo): Response
     {
-        return $this->render('layouts/home.html.twig');
+        $latestMemoires = $repo->findLatest();
+
+        return $this->render('layouts/home.html.twig', [
+            'latests' => $latestMemoires
+        ]);
     }
 }

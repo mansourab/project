@@ -19,6 +19,19 @@ class MemoireRepository extends ServiceEntityRepository
         parent::__construct($registry, Memoire::class);
     }
 
+    /**
+    * @return Memoire[] Returns an array of Memoire objects
+    */
+    public function findLatest() {
+        return $this->createQueryBuilder('m')
+                    ->orderBy('m.createdAt', 'desc')
+                    ->setMaxResults(5)
+                    ->getQuery()
+                    ->getResult()
+        ;
+    }
+
+
     // /**
     //  * @return Memoire[] Returns an array of Memoire objects
     //  */

@@ -25,5 +25,10 @@
 		</form>
 		
 		<hr>
+		
 	{% endfor %}
+
+		<div class="navigation" style="margin-bottom: 20px;">
+			{{ knp_pagination_render(memoires) }}
+		</div>
 {% endblock %}

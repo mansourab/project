@@ -6,6 +6,7 @@ use App\Entity\Memoire;
 use App\Form\MemoireFormType;
 use App\Repository\MemoireRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,13 +19,24 @@ class MemoireController extends AbstractController
      * @Route("/memoire/index", name="memoire_index")
      * @return \Symfony\Component\HttpFoundation\Response 
      */
-    public function list(MemoireRepository $repo): Response
+    public function list(MemoireRepository $repo, PaginatorInterface $paginator, Request $request): Response
     {
-        $memoires = $repo->findAll();
+        // $memoires = $repo->findAll();
+
+        // return $this->render('memoire/index.html.twig', [
+        //     'memoires' => $memoires
+        // ]);
+
+        $memoires = $paginator->paginate(
+            $repo->findAll(), /* query NOT result */
+            $request->query->getInt('page', 1), /*page number*/
+            5 /*limit per page*/
+        );
 
         return $this->render('memoire/index.html.twig', [
-            'memoires' => $memoires
+            'memoires' => $memoires,
         ]);
+
     }
 
     /**
