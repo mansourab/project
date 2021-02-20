@@ -5,6 +5,11 @@
 {% block body %}
 	<h1>Liste des mémoires</h1>
 
+	{{form_start(form)}}
+    {{form_widget(form)}}
+    <button>Rechercher</button>
+    {{form_end(form)}}
+
 	{% for memoire in memoires %}
 
 		<h2>

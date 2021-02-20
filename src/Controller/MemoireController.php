@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Data\SearchData;
 use App\Entity\Memoire;
 use App\Form\MemoireFormType;
+use App\Form\SearchForm;
 use App\Repository\MemoireRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -27,13 +29,21 @@ class MemoireController extends AbstractController
         //     'memoires' => $memoires
         // ]);
 
+        $data = new SearchData();
+
+        $form = $this->createForm(SearchForm::class, $data);
+        $form->handleRequest($request);
+
+        // $memoires = $repo->findSearch($data);
+
         $memoires = $paginator->paginate(
-            $repo->findAll(), /* query NOT result */
+            $repo->findSearch($data), /* query NOT result */
             $request->query->getInt('page', 1), /*page number*/
             5 /*limit per page*/
         );
 
         return $this->render('memoire/index.html.twig', [
+            'form' => $form->createView(),
             'memoires' => $memoires,
         ]);
 

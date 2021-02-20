@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Memoire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -29,6 +30,35 @@ class MemoireRepository extends ServiceEntityRepository
                     ->getQuery()
                     ->getResult()
         ;
+    }
+
+    /**
+     * Récupere les memoires liés à une recherche
+     * @return Memoire[]
+     */
+    public function findSearch(SearchData $search)
+    {
+        $query = $this
+                ->createQueryBuilder('m')
+                ->select('c', 'm')
+                ->join('m.categories', 'c')
+        ;
+
+        if (!empty($search->q)) {
+            $query = $query
+                        ->andWhere('m.title LIKE :q')
+                        ->setParameter('q', "%{$search->q}%")
+            ;
+        }
+
+        if (!empty($search->categories)) {
+            $query = $query
+                        ->andWhere('c.id IN (:categories)')
+                        ->setParameter('categories', $search->categories)
+            ;
+        }
+
+        return $query->getQuery()->getResult();
     }
 
 
