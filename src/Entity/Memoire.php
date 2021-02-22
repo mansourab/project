@@ -19,7 +19,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\HasLifecycleCallbacks
  * @Vich\Uploadable
  */
-class Memoire
+class Memoire 
 {
     use Timestampable;
 
@@ -36,10 +36,32 @@ class Memoire
     private $title;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"title"})
+     */
+    private $slug;
+
+    /**
      * @ORM\Column(type="text")
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $domaine;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $specialite;
+
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -52,16 +74,23 @@ class Memoire
      */
     private $attachment;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"title"})
-     */
-    private $slug;
-
+    
     /**
      * @ORM\ManyToMany(targetEntity=Category::class, inversedBy="memoires")
      */
     private $categories;
+
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $publier;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $format;
+    
 
     public function __construct()
     {
@@ -168,6 +197,66 @@ class Memoire
     public function __toString()
     {
         return $this->title;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDomaine(): ?string
+    {
+        return $this->domaine;
+    }
+
+    public function setDomaine(string $domaine): self
+    {
+        $this->domaine = $domaine;
+
+        return $this;
+    }
+
+    public function getSpecialite(): ?string
+    {
+        return $this->specialite;
+    }
+
+    public function setSpecialite(string $specialite): self
+    {
+        $this->specialite = $specialite;
+
+        return $this;
+    }
+
+    public function getPublier()
+    {
+        return $this->publier;
+    }
+
+    public function setPublier(bool $publier)
+    {
+        $this->publier = $publier;
+
+        return $this;
+    }
+
+    public function getFormat(): ?string
+    {
+        return $this->format;
+    }
+
+    public function setFormat(string $format): self
+    {
+        $this->format = $format;
+
+        return $this;
     }
     
 }
