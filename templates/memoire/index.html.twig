@@ -3,37 +3,38 @@
 {% block title 'liste des mémoires' %}
 
 {% block body %}
-	<h1>Liste des mémoires</h1>
-
-	{{form_start(form)}}
-    {{form_widget(form)}}
-    <button>Rechercher</button>
-    {{form_end(form)}}
-
-	{% for memoire in memoires %}
-
-		<h2>
-			<a href="{{path('memoire_show', {id: memoire.id})}}">{{ memoire.title }}</a>
-		</h2>
-
-		<p>
-			{{ memoire.description }}
-		</p>
-
-		<a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a> |
-
-		<form action="{{ path('memoire_delete', {id: memoire.id}) }}"
-			method="POST" style="display: inline-block;">
-			<input type="hidden" name="_method" value="DELETE">
-			<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ memoire.id) }}">
-			<button>Supprimer</button>
-		</form>
-		
-		<hr>
-		
-	{% endfor %}
-
-		<div class="navigation" style="margin-bottom: 20px;">
-			{{ knp_pagination_render(memoires) }}
+	{# {{form_start(form)}} #}
+		<div class="col-md-6 mt-4">
+			{{ form_row(form.q) }}
+			<button>Rechercher</button>
 		</div>
+
+		<div class="col-md-4">
+			{{ form_row(form.categories) }}
+		</div>
+
+	{# {{form_end(form)}} #}
+
+	<h1>Liste des mémoires</h1>
+	<table class="table table-bordered">
+	  <thead>
+	    <tr>
+	      <th scope="col">Titre</th>
+	      <th scope="col">Description</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  {% for memoire in memoires %}
+	    <tr>
+	      <td><a href="{{path('memoire_show', {id: memoire.id})}}">{{ memoire.title }}</a></td>
+	      <td>{{ memoire.description }}</td>
+	    </tr>
+	{% endfor %}
+	  </tbody>
+	</table>
+
+	<div class="navigation" style="margin-bottom: 20px;">
+		{{ knp_pagination_render(memoires) }}
+	</div>
+
 {% endblock %}

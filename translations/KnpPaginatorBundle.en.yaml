@@ -1,0 +1,5 @@
+framework:
+    default_locale: tr
+
+label_next: Suivant
+label_previous: Précedent

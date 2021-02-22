@@ -3,10 +3,38 @@
 {% block title 'modification de memoire' %}
 
 {% block body %}
-	<h1>Modifier le memoire</h1>
+	<h1 class="text-center">Modifier le memoire</h1>
 
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	<button>Save</button>
-	{{ form_end(form) }}
+	<div class="row mt-4">
+		<div class="col-md-4">
+			{{ form_row(form.title) }}
+		</div>
+		<div class="col-md-4">
+			{{ form_row(form.author) }}
+		</div>
+		<div class="col-md-4">
+			{{ form_row(form.domaine) }}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4">
+			{{ form_row(form.description) }}
+		</div>
+		<div class="col-md-2">
+			{{ form_row(form.format) }}
+		</div>
+		<div class="col-md-2">
+			{{ form_row(form.attachment) }}
+		</div>
+		<div class="col-md-3">
+			{{ form_row(form.specialite) }}
+		</div>
+		<div class="col-md-1">
+			{{ form_row(form.publier) }}
+		</div>
+	</div>
+	<button class="btn btn-success">Save changes</button>
+	
+
 {% endblock %}

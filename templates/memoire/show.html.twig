@@ -15,4 +15,14 @@
     <p>
         {{ memoire.description }}
     </p>
+
+    <a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a>
+
+    <form action="{{ path('memoire_delete', {id: memoire.id}) }}"
+        method="POST" style="display: inline-block;">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ memoire.id) }}">
+        <button class="btn btn-danger">Supprimer</button>
+    </form> 
+    
 {% endblock %}
