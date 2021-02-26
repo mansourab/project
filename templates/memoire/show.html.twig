@@ -16,6 +16,10 @@
         {{ memoire.description }}
     </p>
 
+    <p>
+        Format : {{ memoire.format }}
+    </p>
+
     <a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a>
 
     <form action="{{ path('memoire_delete', {id: memoire.id}) }}"

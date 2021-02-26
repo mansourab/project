@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Memoire;
+use App\Entity\MemoireOptions;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -34,6 +35,10 @@ class MemoireFormType extends AbstractType
                     'DOC' => 'DOC',
                     'IMG' => 'IMG'
                 ]
+            ])
+            ->add('type', EntityType::class, [
+                'class' => MemoireOptions::class,
+                'expanded' => true
             ])
             ->add('publier')
         ;

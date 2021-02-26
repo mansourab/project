@@ -73,7 +73,7 @@ class MemoireController extends AbstractController
 
     /**
      * @Route("/memoire/edit/{id}", name="memoire_edit")
-     * @param Item $item
+     * @param Memoire $memoire
      * @param EntityManagerInterface $em
      */
     public function edit(Memoire $memoire, Request $request, EntityManagerInterface $em)

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h2>liste des options</h2>
+
+	{% for type in options %}
+		<div>
+			{{ type.name }} | <a href="{{ path('memoire_option_edit', {id: type.id}) }}">Editer</a>
+		</div>
+	{% endfor %}
+	<div>
+		<a href=" {{ path("memoire_option_add") }} ">Ajouter une option</a>
+	</div>
+{% endblock %}

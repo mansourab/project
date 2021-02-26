@@ -90,11 +90,17 @@ class Memoire
      * @ORM\Column(type="string", length=255)
      */
     private $format;
-    
 
+    /**
+     * @ORM\ManyToOne(targetEntity=MemoireOptions::class, inversedBy="memoires")
+     */
+    private $type;
+
+    
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
 
@@ -255,6 +261,18 @@ class Memoire
     public function setFormat(string $format): self
     {
         $this->format = $format;
+
+        return $this;
+    }
+
+    public function getType(): ?MemoireOptions
+    {
+        return $this->type;
+    }
+
+    public function setType(?MemoireOptions $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

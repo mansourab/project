@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Model;
+use App\Entity\MemoireOptions;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Model|null find($id, $lockMode = null, $lockVersion = null)
- * @method Model|null findOneBy(array $criteria, array $orderBy = null)
- * @method Model[]    findAll()
- * @method Model[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method MemoireOptions|null find($id, $lockMode = null, $lockVersion = null)
+ * @method MemoireOptions|null findOneBy(array $criteria, array $orderBy = null)
+ * @method MemoireOptions[]    findAll()
+ * @method MemoireOptions[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ModelRepository extends ServiceEntityRepository
+class MemoireOptionsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Model::class);
+        parent::__construct($registry, MemoireOptions::class);
     }
 
     // /**
-    //  * @return Model[] Returns an array of Model objects
+    //  * @return MemoireOptions[] Returns an array of MemoireOptions objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ModelRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Model
+    public function findOneBySomeField($value): ?MemoireOptions
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

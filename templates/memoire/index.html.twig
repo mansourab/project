@@ -3,7 +3,7 @@
 {% block title 'liste des mémoires' %}
 
 {% block body %}
-	{# {{form_start(form)}} #}
+	{{form_start(form)}}
 		<div class="col-md-6 mt-4">
 			{{ form_row(form.q) }}
 			<button>Rechercher</button>
@@ -13,7 +13,7 @@
 			{{ form_row(form.categories) }}
 		</div>
 
-	{# {{form_end(form)}} #}
+	{{form_end(form)}}
 
 	<h1>Liste des mémoires</h1>
 	<table class="table table-bordered">
