@@ -29,6 +29,7 @@ class MemoireOptions
      */
     private $memoires;
 
+    
     public function __construct()
     {
         $this->memoires = new ArrayCollection();
