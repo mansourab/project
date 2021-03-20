@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -33,6 +35,16 @@ class User implements UserInterface, \Serializable
      */
     private $roles = [];
 
+    /**
+     * @ORM\OneToMany(targetEntity=Memoire::class, mappedBy="user")
+     */
+    private $memoires;
+
+
+    public function __construct()
+    {
+        $this->memoires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +121,35 @@ class User implements UserInterface, \Serializable
             $this->password,
             $this->roles
             ) = unserialize($serialized, ['allowed_class' => false]);
+    }
+
+    /**
+     * @return Collection|Memoire[]
+     */
+    public function getMemoires(): Collection
+    {
+        return $this->memoires;
+    }
+
+    public function addMemoire(Memoire $memoire): self
+    {
+        if (!$this->memoires->contains($memoire)) {
+            $this->memoires[] = $memoire;
+            $memoire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMemoire(Memoire $memoire): self
+    {
+        if ($this->memoires->removeElement($memoire)) {
+            // set the owning side to null (unless already changed)
+            if ($memoire->getUser() === $this) {
+                $memoire->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }
