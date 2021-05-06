@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th scope="col">Titre</th>
+        <th scope="col">Description</th>
+        <th scope="col">User</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for memoire in memoires %}
+    <tr>
+        <td><a href="{{path('memoire_show', {slug: memoire.slug})}}">{{ memoire.title }}</a></td>
+        <td>{{ memoire.description }}</td>
+        <td>{{ memoire.user }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>

@@ -3,35 +3,13 @@
 {% block title 'liste des mémoires' %}
 
 {% block body %}
-	{{form_start(form)}}
-		<div class="col-md-6 mt-4">
-			{{ form_row(form.q) }}
-			<button>Rechercher</button>
-		</div>
 
-		<div class="col-md-4">
-			{{ form_row(form.categories) }}
-		</div>
+	{% include "memoire/inc/searchForm.html.twig" %}
 
-	{{form_end(form)}}
 
 	<h1>Liste des mémoires</h1>
-	<table class="table table-bordered">
-	  <thead>
-	    <tr>
-	      <th scope="col">Titre</th>
-	      <th scope="col">Description</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	  {% for memoire in memoires %}
-	    <tr>
-	      <td><a href="{{path('memoire_show', {id: memoire.id})}}">{{ memoire.title }}</a></td>
-	      <td>{{ memoire.description }}</td>
-	    </tr>
-	{% endfor %}
-	  </tbody>
-	</table>
+
+	{% include "memoire/inc/tableList.html.twig" %}
 
 	<div class="navigation" style="margin-bottom: 20px;">
 		{{ knp_pagination_render(memoires) }}

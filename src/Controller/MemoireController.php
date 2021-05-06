@@ -72,7 +72,7 @@ class MemoireController extends AbstractController
     }
 
     /**
-     * @Route("/memoire/edit/{id}", name="memoire_edit")
+     * @Route("/memoire/edit/{slug}", name="memoire_edit")
      * @param Memoire $memoire
      * @param EntityManagerInterface $em
      */
@@ -95,7 +95,7 @@ class MemoireController extends AbstractController
     }
 
     /**
-     * @Route("/memoire/show/{id}", name="memoire_show")
+     * @Route("/memoire/show/{slug}", name="memoire_show")
      */
     public function show(Memoire $memoire)
     {
@@ -109,7 +109,7 @@ class MemoireController extends AbstractController
     }
 
     /**
-     * @Route("/memoire/delete{id}", name="memoire_delete", methods="DELETE")
+     * @Route("/memoire/delete{slug}", name="memoire_delete", methods="DELETE")
      * @param Memoire $memoire
      * @param EntityManagerInterface $em
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

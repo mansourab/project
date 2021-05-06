@@ -20,12 +20,12 @@
         Format : {{ memoire.format }}
     </p>
 
-    <a href="{{ path("memoire_edit",  {id: memoire.id}) }}">Editer</a>
+    <a href="{{ path("memoire_edit",  {slug: memoire.slug}) }}">Editer</a>
 
-    <form action="{{ path('memoire_delete', {id: memoire.id}) }}"
+    <form action="{{ path('memoire_delete', {slug: memoire.slug}) }}"
         method="POST" style="display: inline-block;">
         <input type="hidden" name="_method" value="DELETE">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ memoire.id) }}">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ memoire.slug) }}">
         <button class="btn btn-danger">Supprimer</button>
     </form> 
     

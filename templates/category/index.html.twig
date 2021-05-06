@@ -3,11 +3,11 @@
 {% block title 'liste des categories' %}
 
 {% block body %}
-	<h1>Liste des categories</h1>
+	<h1> Liste des categories </h1>
 
 	{% for category in categories %}
 
-		<h2>{{ category.name }}</h2>
+		<h3> {{ category.name }} </h3>
 
 		<a href="{{ path("category_edit",  {id: category.id}) }}">Editer la categorie</a> |
 
